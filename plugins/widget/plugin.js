@@ -288,6 +288,10 @@
 		 * This method is triggered by the {@link #event-checkSelection} event.
 		 */
 		checkSelection: function() {
+			if ( !this.editor.getSelection() ) {
+				return;
+			}
+
 			var sel = this.editor.getSelection(),
 				selectedElement = sel.getSelectedElement(),
 				updater = stateUpdater( this ),
@@ -2918,7 +2922,7 @@
 		function fixCrossContentSelection() {
 			var selection = editor.getSelection(),
 				ranges = selection && selection.getRanges(),
-				range = ranges[ 0 ];
+				range = ranges ? ranges[ 0 ] : null;
 
 			if ( !range || range.collapsed ) {
 				return;
