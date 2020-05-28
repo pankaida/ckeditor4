@@ -375,6 +375,9 @@
 			var editable = editor.editable();
 			if ( !editable || editable.status != 'ready' )
 				return false;
+			
+			if (editable.$.className.indexOf('placeholder') >= 0)
+				return false;
 
 			var snapshots = this.snapshots;
 
